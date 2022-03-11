@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 
 public class Homework17 {
 
@@ -43,7 +44,7 @@ public class Homework17 {
                 .post("https://reqres.in/api/login")
                 .then()
                 .statusCode(200)
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+                .body("token", notNullValue());
     }
 
     @Test
