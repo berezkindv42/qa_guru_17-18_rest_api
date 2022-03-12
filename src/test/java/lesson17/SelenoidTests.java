@@ -1,4 +1,4 @@
-package tests;
+package lesson17;
 
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
@@ -10,6 +10,11 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SelenoidTests {
+
+    /* GET — получение ресурса
+    POST — создание ресурса (тоже может быть обновлением ресурса)
+    PUT — обновление ресурса
+    DELETE — удаление ресурса */
 
     // make request to https://selenoid.autotests.cloud/status
     // total is 20
