@@ -78,6 +78,8 @@ public class demoWebShopAddToCart {
                         .extract().path("updatetopcartsectionhtml").toString();
         System.out.println(response);
 
+//        .body("updatetopcartsectionhtml", is(String.format("(%s)", str)));
+
 //        assertThat(response.extract().path("updatetopcartsectionhtml").toString())
 //                .body("updatetopcartsectionhtml", is("(" + cartSize + ")");
     }
