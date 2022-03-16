@@ -5,13 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
-public class Homework18 {
+public class Homework18 extends TestBase{
 
     @Test
     @DisplayName("Login test API + UI")
@@ -22,25 +21,26 @@ public class Homework18 {
                         .formParam("Email", "johnsmith@mail.com")
                         .formParam("Password", "js1234")
                         .when()
-                        .post("http://demowebshop.tricentis.com/login")
+                        .post("/login")
                         .then()
                         .statusCode(302)
                         .extract()
                         .cookie("NOPCOMMERCE.AUTH");
-        open("http://demowebshop.tricentis.com/Themes/DefaultClean/Content/images/logo.png");
+        open("/Themes/DefaultClean/Content/images/logo.png");
         getWebDriver().manage().addCookie(new Cookie("NOPCOMMERCE.AUTH", authorizationCookie));
-        open("http://demowebshop.tricentis.com/");
+        open("");
         $(".account").shouldHave(text("johnsmith@mail.com"));
+        closeWebDriver();
     }
 
     @Test
-    @DisplayName(" New user add item to wishlist")
+    @DisplayName("New user add item to wishlist")
     void addToWishlistNotAuthorisedUserTest() {
         given()
                 .contentType("application/x-www-form-urlencoded;")
                 .body("addtocart_78.EnteredQuantity=1")
                 .when()
-                .post("http://demowebshop.tricentis.com/addproducttocart/details/78/2")
+                .post("/addproducttocart/details/78/2")
                 .then()
                 .log().all()
                 .statusCode(200)
